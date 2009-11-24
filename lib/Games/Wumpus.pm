@@ -5,7 +5,7 @@ use strict;
 use warnings;
 no  warnings 'syntax';
 
-our $VERSION = '2009072702';
+our $VERSION = '2009112401';
 
 use Hash::Util::FieldHash qw [fieldhash];
 
@@ -20,8 +20,9 @@ fieldhash my %finished;
 sub new  {bless \do {my $var} => shift}
 sub init {
     my $self = shift;
+    my %args = @_;
 
-    $cave     {$self} = Games::Wumpus::Cave -> new -> init;
+    $cave     {$self} = Games::Wumpus::Cave -> new -> init (%args);
     $arrows   {$self} = $NR_OF_ARROWS;
 
     $cave     {$self} -> set_location ($cave {$self} -> start);
